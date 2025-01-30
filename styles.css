@@ -1,0 +1,83 @@
+/* We rely on source order for mobile-first approach
+ * in this case:
+ * 1. header
+ * 2. article
+ * 3. aside 1
+ * 4. aside 2
+ * 5. footer
+ */
+  .wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  font-weight: bold;
+  text-align: center;
+}
+
+.wrapper > * {
+  padding: 10px;
+  flex: 1 100%;
+}
+
+.header {
+  background: tomato;
+}
+
+.footer {
+  background: lightgreen;
+}
+
+.main {
+  text-align: left;
+  background: #ffDDff;
+}
+/* Medium screens */
+@media all and (min-width: 600px) {
+  /* We tell both sidebars to share a row */
+  .aside { flex: 1 auto; }
+
+  /*
+  Nav bar has flex and space-evenly, if you want change this to space-around
+   */
+nav {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+
+  list-style: none;
+  margin: 0;
+  background: #660099;
+}
+
+nav a {
+  text-decoration: none;
+  display: block;
+  padding: 1em;
+  color: #FFFFFF;
+}
+
+nav a:hover {
+  background: #dd00ddd;
+}
+
+}
+
+/* Large screens */
+@media all and (min-width: 800px) {
+  /* We invert order of first sidebar and main
+   * And tell the main element to take twice as much width as the other two sidebars
+   */
+  .main { flex: 3 0px; }
+.aside-1 { order: 1; } /* Moves aside-1 to the left */
+.main    { order: 2; } /* Keeps main content in the center */
+.aside-2 { order: 3; } /* Moves aside-2 to the right */
+  .footer  { order: 4; }
+
+}
+
+
+@media all and (max-width: 800px) {
+  nav {
+    justify-content: space-around;
+  }
+}
+
